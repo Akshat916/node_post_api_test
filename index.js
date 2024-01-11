@@ -18,8 +18,8 @@ app.get('/api', (req, res) => {
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
   const data = req.body;
-  // const contactId = data.data.data.id;
-  // console.log("contact ID ==== ", contactId);
+  const contactId = req.body.data.data.id;
+  console.log("contact ID ==== ", contactId);
   console.log('Received POST request with data:', data);
   // const diff = JSON.stringify(data.data);
   // console.log("===",diff);
