@@ -10,8 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handle GET requests
 app.get('/api', (req, res) => {
-  const data = req.query; // Access query parameters if any
+  const data = req.query; // Access query parameters
   console.log("Received GET request data:", data);
+  res.json(data); // Return the query parameters in JSON format
 });
 
 // Handle POST requests
