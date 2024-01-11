@@ -33,6 +33,8 @@ app.listen(port, () => {
 
 // Function to fetch information about ongoing conversations and their contacts
 async function fetchConversationsAndContacts(contactId) {
+const driftApiKey = 'he22N9v597g4t0J9dftC94y1LjoXRAqF';
+
   try {
     // Make a GET request to the Drift API's contacts endpoint using the contactId
     const contactResponse = await axios.get(`https://api.drift.com/v1/contacts/${contactId}`, {
