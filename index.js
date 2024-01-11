@@ -9,9 +9,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handle GET requests
-app.get('/api', (req, res) =>{
-  const data = res.data;
-  console.log("Received GET request data : ", data);
+app.get('/api', (req, res) => {
+  const data = req.query; // Access query parameters if any
+  console.log("Received GET request data:", data);
 });
 
 // Handle POST requests
@@ -23,5 +23,5 @@ app.post('/api/postData', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on`);
+  console.log(`Server is running on port ${port}`);
 });
