@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/api', (req, res) =>{
   const data = res.data;
   console.log("Received GET request data : ", data);
-)};
+});
 
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
