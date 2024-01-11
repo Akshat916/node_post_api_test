@@ -19,6 +19,8 @@ app.get('/api', (req, res) => {
 app.post('/api/postData', (req, res) => {
   const data = req.body;
   console.log('Received POST request with data:', data);
+  const contactId = data.data.id;
+  console.log('Contact Id ======= ', contactId);
   res.send('POST request received successfully!');
 });
 
