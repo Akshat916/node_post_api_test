@@ -17,8 +17,9 @@ app.get('/api', (req, res) => {
 
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
-  const data = JSON.stringify(req.body);
+  const data = req.body;
   console.log('Received POST request with data:', data);
+  const diff = JSON.stringify(data.data.data);
   res.send('POST request received successfully!');
 });
 
