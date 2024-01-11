@@ -43,18 +43,18 @@ const driftApiKey = 'he22N9v597g4t0J9dftC94y1LjoXRAqF';
       },
     });
 
-    // const contactData = contactResponse.data.data.attributes;
+    const contactData = contactResponse.data.data.attributes;
 
     // Create userData object with default values for missing attributes
-    // const userData = {
-    //   id: contactResponse.data.data.id || null,
-    //   externalId: contactData.externalId || null,
-    //   location: contactData.last_context_location ? JSON.parse(contactData.last_context_location) : null,
-    //   email: contactData.email || null,
-    // };
+    const userData = {
+      id: contactResponse.data.data.id || null,
+      externalId: contactData.externalId || null,
+      location: contactData.last_context_location ? JSON.parse(contactData.last_context_location) : null,
+      email: contactData.email || null,
+    };
 
     // Log information about the contact
-    console.log('Contact Information:', contactResponse.data);
+    console.log('Contact Information:', userData);
   } catch (error) {
     if (error.response && error.response.status === 404) {
       console.log(`Contact with ID ${contactId} not found. It may have been deleted.`);
