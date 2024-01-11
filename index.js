@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
 const app = express();
 const port = 3000;
@@ -18,9 +19,10 @@ app.get('/api', (req, res) => {
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
   const data = req.body;
-  console.log('Received POST request with data:', data);
+  // console.log('Received POST request with data:', data);
   const contactId = data.data.id;
-  console.log('Contact Id ======= ', contactId);
+  // console.log('Contact Id ======= ', contactId);
+  fetchConversationsAndContacts(contactId);
   res.send('POST request received successfully!');
 });
 
@@ -28,3 +30,35 @@ app.post('/api/postData', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// Function to fetch information about ongoing conversations and their contacts
+async function fetchConversationsAndContacts(contactId) {
+  try {
+    // Make a GET request to the Drift API's contacts endpoint using the contactId
+    const contactResponse = await axios.get(`https://api.drift.com/v1/contacts/${contactId}`, {
+      headers: {
+        'Authorization': `Bearer ${driftApiKey}`,
+      },
+    });
+
+    // const contactData = contactResponse.data.data.attributes;
+
+    // Create userData object with default values for missing attributes
+    // const userData = {
+    //   id: contactResponse.data.data.id || null,
+    //   externalId: contactData.externalId || null,
+    //   location: contactData.last_context_location ? JSON.parse(contactData.last_context_location) : null,
+    //   email: contactData.email || null,
+    // };
+
+    // Log information about the contact
+    console.log('Contact Information:', contactResponse);
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      console.log(`Contact with ID ${contactId} not found. It may have been deleted.`);
+    } else {
+      console.error(`Error fetching contact with ID ${contactId}:`, error.message);
+    }
+  }
+}
+
