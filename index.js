@@ -8,6 +8,12 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Handle GET requests
+app.get('/api', (req, res) =>{
+  const data = res.data;
+  console.log("Received GET request data : ", data);
+)};
+
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
   const data = req.body;
