@@ -54,7 +54,7 @@ const driftApiKey = 'he22N9v597g4t0J9dftC94y1LjoXRAqF';
     // };
 
     // Log information about the contact
-    console.log('Contact Information:', contactResponse);
+    console.log('Contact Information:', contactResponse.data);
   } catch (error) {
     if (error.response && error.response.status === 404) {
       console.log(`Contact with ID ${contactId} not found. It may have been deleted.`);
