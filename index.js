@@ -42,6 +42,7 @@ const driftApiKey = 'he22N9v597g4t0J9dftC94y1LjoXRAqF';
         'Authorization': `Bearer ${driftApiKey}`,
       },
     });
+    console.log('Contact Information:', contactResponse);
 
     const contactData = contactResponse.data.data.attributes;
 
