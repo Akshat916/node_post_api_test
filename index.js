@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
 
 const app = express();
 const port = 3000;
@@ -20,9 +19,13 @@ app.get('/api/postData', (req, res) => {
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
   const data = req.body;
-  postDataCollection.push(data); // Store the received data
+
+  // Store the received data
+  postDataCollection.push(data);
+
   console.log('Received POST request with data:', data);
 
+  // Uncomment the lines below if you want to log the data and fetch information
   // const contactId = data.data.id;
   // fetchConversationsAndContacts(contactId);
 
@@ -37,7 +40,7 @@ app.listen(port, () => {
 // Function to fetch information about ongoing conversations and their contacts
 // async function fetchConversationsAndContacts(contactId) {
 //   const driftApiKey = 'he22N9v597g4t0J9dftC94y1LjoXRAqF';
-
+//
 //   try {
 //     // Make a GET request to the Drift API's contacts endpoint using the contactId
 //     const contactResponse = await axios.get(`https://api.drift.com/v1/contacts/${contactId}`, {
@@ -46,9 +49,9 @@ app.listen(port, () => {
 //       },
 //     });
 //     console.log('Contact Information:', contactResponse.data);
-
+//
 //     const contactData = contactResponse.data.data.attributes;
-
+//
 //     // Create userData object with default values for missing attributes
 //     const userData = {
 //       id: contactResponse.data.data.id || null,
@@ -56,7 +59,7 @@ app.listen(port, () => {
 //       location: contactData.last_context_location ? JSON.parse(contactData.last_context_location) : null,
 //       email: contactData.email || null,
 //     };
-
+//
 //     // Log information about the contact
 //     console.log('Contact Information:', userData);
 //   } catch (error) {
