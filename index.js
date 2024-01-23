@@ -19,12 +19,12 @@ app.get('/api/postData', (req, res) => {
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
   const data = req.body;
-  const header = req.headers
+  // const header = req.headers
   // Store the received data
   postDataCollection.push(data);
-  console.log("header ", header);
+  // console.log("header ", header);
   console.log('Received POST request with data:', data);
-
+  console.log('external_id', data.attributes.external_id)
   // Uncomment the lines below if you want to log the data and fetch information
   // const contactId = data.data.id;
   // fetchConversationsAndContacts(contactId);
