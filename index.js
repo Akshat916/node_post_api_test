@@ -19,10 +19,14 @@ app.get('/api/postData', (req, res) => {
 // Handle POST requests
 app.post('/api/postData', (req, res) => {
   const data = req.body;
-
+  const domain = req.headers.url || req.headers.origin
+  const referringURL = req.headers.referrer
+    ? new URL(req.headers.referrer)
+    : {}
   // Store the received data
   postDataCollection.push(data);
-
+  console.log("domain ", domain);
+  console.log("referringURL ", referringURL);
   console.log('Received POST request with data:', data);
 
   // Uncomment the lines below if you want to log the data and fetch information
